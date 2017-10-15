@@ -1,3 +1,6 @@
+require_relative('../db/SQLRunner')
+require_relative('Guest')
+
 class Film
 
 	def initialize(options)
@@ -33,7 +36,17 @@ class Film
 	end
 
 	def customers
+		sql = 'SELECT customers.* from customers
+					 INNER JOIN tickets
+           ON customers.id = tickets.customer_id
+					 WHERE film_id = $1;'
 
+		values = [@id]
+		customers = SQLRunner.run(sql, values).map{ |customer|
+			Customer.new(customer)
+		}
+
+		return customers
 	end
 
 end
