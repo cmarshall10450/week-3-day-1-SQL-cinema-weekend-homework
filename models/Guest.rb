@@ -3,7 +3,7 @@ class Customer
 	def initialize(options)
 		@id = options['id'].to_i if options['id']
 		@name = options['name']
-		@funds = options['funds'].to_i
+		@funds = options['funds'].to_f
 	end
 
 	def save
@@ -16,6 +16,10 @@ class Customer
 
 	def delete
 
+	end
+
+	def films
+		
 	end
 
 end
