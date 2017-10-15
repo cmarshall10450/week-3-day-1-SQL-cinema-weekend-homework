@@ -1,5 +1,6 @@
 require_relative('../db/SQLRunner')
 require_relative('Film')
+require_relative('Ticket')
 
 class Customer
 
@@ -50,6 +51,19 @@ class Customer
 		}
 
 		return films
+	end
+
+	def buy_ticket_for_film_by_id(film_id)
+		price = Film.get_film_price(film_id)
+		@funds -= price
+		update()
+
+		ticket = Ticket.new({
+			'customer_id' => @id,
+			'film_id' => film_id
+		})
+
+		ticket.save
 	end
 
 end

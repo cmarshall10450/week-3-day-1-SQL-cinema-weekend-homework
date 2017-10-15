@@ -49,4 +49,10 @@ class Film
 		return customers
 	end
 
+	def self.get_film_price(id)
+		sql = 'SELECT price from films WHERE id = $1'
+		values = [id]
+		return SQLRunner.run(sql, values)[0]['price'].to_f
+	end
+
 end
