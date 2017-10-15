@@ -66,4 +66,11 @@ class Customer
 		ticket.save
 	end
 
+	def ticket_count
+		sql = 'SELECT count(id) from tickets WHERE customer_id = $1;'
+		values = [@id]
+
+		return SQLRunner.run(sql, values)[0]['count'].to_i
+	end
+
 end

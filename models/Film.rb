@@ -55,4 +55,9 @@ class Film
 		return SQLRunner.run(sql, values)[0]['price'].to_f
 	end
 
+	def customer_count
+		sql = 'SELECT count(id) FROM tickets WHERE film_id = $1'
+		values = [@id]
+		return SQLRunner.run(sql, values)[0]['count'].to_i
+	end
 end
